@@ -35,8 +35,10 @@ void draw_field(Camera3D camera)
         x_offset = 0.0f + BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
         for (int j = 0; j < GRID_LENGTH; j++)
         {
-            DrawModel(get_grid(i, j), (Vector3){x_offset, BLOCK_SIZE / 2, z_offset}, .666666f, DARKGRAY);
+            //draw interactives
+            DrawModel(get_grid(i, j), (Vector3){x_offset, BLOCK_SIZE / 2, z_offset}, .666666f, WHITE);
 #ifdef GRID_SELECTION
+            //draw grid
             if (j == location.u && i == location.v)
             {
                 DrawCube((Vector3){x_offset, -BLOCK_SIZE / 2, z_offset}, BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE, GREEN);
@@ -44,8 +46,8 @@ void draw_field(Camera3D camera)
                 x_offset -= BLOCK_SIZE;
                 continue;
             }
-            //printf("%i,%i\n", location.u, location.v);
 #endif
+
             DrawCube((Vector3){x_offset, -BLOCK_SIZE / 2, z_offset}, BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE, LIGHTGRAY);
             DrawCubeWires((Vector3){x_offset, -BLOCK_SIZE / 2, z_offset}, BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE, GRAY);
             x_offset -= BLOCK_SIZE;

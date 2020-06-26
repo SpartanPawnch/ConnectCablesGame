@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Cable_turn.blend'
 # www.blender.org
-# mtllib Cable_turn.mtl
+mtllib assets/Cable_turn.mtl
 o Cylinder
 v -0.000000 0.528003 -0.750000
 v -0.000000 0.451185 0.750000
@@ -269,8 +269,8 @@ vn -0.0569 -0.1476 0.9874
 vn -0.0219 -0.4497 0.8929
 vn -0.0173 -0.5187 0.8548
 vn -0.0561 -0.1798 0.9821
-#usemtl Material.001
-#s off
+usemtl Material.001
+s off
 f 1/1/1 27/2/1 65/3/1 25/4/1
 f 27/2/2 2/5/2 26/6/2 65/3/2
 f 65/3/3 26/6/3 4/7/3 28/8/3

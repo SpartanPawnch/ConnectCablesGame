@@ -6,14 +6,12 @@ Model interactive_objects[NUM_MODELS];
 int object_grid[GRID_LENGTH][GRID_LENGTH];
 void load_models()
 {
+
     interactive_objects[0] = LoadModel("assets/Plain_cable.obj");
-    //interactive_objects[0].materials[0].maps[MAP_DIFFUSE].texture =
     interactive_objects[1] = LoadModel("assets/Cable_turn.obj");
-
     interactive_objects[2] = LoadModel("assets/Switch.obj");
-
-    //interactive_objects[3] = LoadModel("assets/Router.obj");
     interactive_objects[3] = LoadModel("assets/Laptop.obj");
+    //interactive_objects[4] = LoadModel("assets/Router.obj");
 }
 Model *get_random_model_ptr()
 {

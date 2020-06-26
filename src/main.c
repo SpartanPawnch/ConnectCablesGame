@@ -32,7 +32,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(DARKGRAY);
 
         BeginMode3D(camera);
 

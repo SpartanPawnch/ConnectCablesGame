@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Switch.blend'
 # www.blender.org
-# mtllib Switch.mtl
+mtllib assets/Switch.mtl
 o Cube_Cube.001
 v -0.500000 -0.500000 0.500000
 v -0.500000 -0.300000 0.500000
@@ -288,8 +288,8 @@ vn 1.0000 0.0000 0.0000
 vn 0.0000 0.0000 1.0000
 vn 0.0000 -1.0000 0.0000
 vn 0.0000 1.0000 0.0000
-#usemtl Material.001
-#s off
+usemtl Material.001
+s off
 f 9/1/1 2/2/1 4/3/1 10/4/1
 f 22/5/2 18/6/2 8/7/2 11/8/2
 f 11/8/3 8/7/3 6/9/3 12/10/3
