@@ -9,5 +9,5 @@ set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # or games
 
 add_subdirectory(libs/raylib)
 
-add_executable(raylib_template src/main.c src/drawfield.c)
+add_executable(raylib_template src/main.c src/drawfield.c src/models.c)
 target_link_libraries(raylib_template PRIVATE raylib)
