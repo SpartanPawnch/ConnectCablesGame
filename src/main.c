@@ -15,7 +15,7 @@ int main(void)
     Texture2D texture = LoadTexture(ASSET_PATH "test.png");
 
     Camera3D camera = (Camera3D){
-        (Vector3){11.0f, 10.0f, -6.0f}, (Vector3){1.0f, 0.0f, -1.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 45.0f, 0};
+        (Vector3){11.0f, 10.0f, -6.0f}, (Vector3){1.0f, 0.0f, -1.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 45.0f, CAMERA_PERSPECTIVE};
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 
     // Main game loop
@@ -34,7 +34,7 @@ int main(void)
 
         BeginMode3D(camera);
 
-        draw_field();
+        draw_field(camera);
 
         EndMode3D();
 

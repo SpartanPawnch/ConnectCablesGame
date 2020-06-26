@@ -1,4 +1,4 @@
 #define GRID_LENGTH 10
 #define BLOCK_SIZE 1.0f
-
-void draw_field();
+#include "raylib.h"
+void draw_field(Camera3D camera);
