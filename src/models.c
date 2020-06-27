@@ -1,9 +1,9 @@
 #include "models.h"
 #include "drawfield.h"
 #include "raylib.h"
-#define NUM_MODELS 4
+
 Model interactive_objects[NUM_MODELS];
-int object_grid[GRID_LENGTH][GRID_LENGTH];
+
 void load_models()
 {
 
@@ -17,19 +17,10 @@ Model *get_random_model_ptr()
 {
     return (interactive_objects + GetRandomValue(0, NUM_MODELS - 1));
 }
-void populate_grid_rand()
+
+Model get_model_id(int id)
 {
-    for (int i = 0; i < GRID_LENGTH; i++)
-    {
-        for (int j = 0; j < GRID_LENGTH; j++)
-        {
-            object_grid[i][j] = GetRandomValue(0, NUM_MODELS - 1);
-        }
-    }
-}
-Model get_grid(int x, int y)
-{
-    return (interactive_objects[object_grid[y][x]]);
+    return interactive_objects[id];
 }
 void unload_models()
 {
