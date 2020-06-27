@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Laptop.blend'
 # www.blender.org
-mtllib Laptop.mtl
+mtllib assets/Laptop.mtl
 o Cube_Cube.001
 v -0.500000 0.002910 0.500000
 v -0.462498 0.066101 0.462498

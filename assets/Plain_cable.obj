@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Plain_cable.blend'
 # www.blender.org
-mtllib Plain_cable.mtl
+mtllib assets/Plain_cable.mtl
 o Cylinder
 v -0.000000 0.455592 -0.750000
 v -0.000000 0.455592 0.750000
