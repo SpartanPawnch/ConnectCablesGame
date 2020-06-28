@@ -55,7 +55,7 @@ void load_level(int lv)
         add_obstacle(sofa, 3, 4, left);
         add_laptop(5, 5, right);
         break;
- case 8:
+ case 0:
         //level info
         grid_start_x = 0;
         grid_start_y = 0;
@@ -63,7 +63,7 @@ void load_level(int lv)
         add_obstacle(speaker, 4, 5, right);
         add_laptop(5, 5, right);
         break;
- case 0:
+ case 8:
         //level info
         grid_start_x = 0;
         grid_start_y = 7;
