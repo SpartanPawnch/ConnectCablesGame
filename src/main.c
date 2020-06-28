@@ -12,10 +12,12 @@ typedef enum GameState
     level = 1,
     end_screen = 2
 } GameState;
+ModelId model_id = cable_straight;
+Direction active_dir = right;
 #define BOX_SPACING 20
 #define OFFSET_LIMIT 5
 GameState game_state = main_menu;
-const int level_count = 9;
+const int level_count = 10;
 // Change this depending on the path of your executable relative to the assets folder
 #define ASSET_PATH "assets/"
 int grid_start_x = 0, grid_start_y = 0;
@@ -23,7 +25,7 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ConnectCablesGame");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Ethernet Salvation");
     load_models();
 
     //------- Level Setup
@@ -40,8 +42,7 @@ int main(void)
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     camera = default_camera;
     GridLocation grid_loc;
-    Direction active_dir = right;
-    ModelId model_id = cable_straight;
+    Direction old_active_dir;
     Rectangle level_icon_box = {180, 180, 150, 150};
     Vector2 icon_box_start = {180, 180};
     // Main game loop
@@ -165,6 +166,8 @@ int main(void)
                 camera_rot -= ROTATE_VELOCITY;
             }
             grid_loc = get_cursor_indices(camera);
+
+            //mouse place
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && get_grid_id(grid_loc.u, grid_loc.v) == -1)
             {
                 place_obj(model_id, grid_loc.u, grid_loc.v, active_dir);

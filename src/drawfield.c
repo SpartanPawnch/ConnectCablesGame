@@ -11,6 +11,8 @@ typedef enum GameState
     level = 1,
     end_screen = 2
 } GameState;
+extern ModelId model_id;
+extern Direction active_dir;
 extern GameState game_state;
 GridLocation get_cursor_indices(Camera3D camera)
 {
@@ -70,6 +72,10 @@ void draw_field(Camera3D camera)
             {
                 if (get_grid_id(j, i) == -1)
                 {
+                    Model preview = get_model_id(model_id);
+                    preview.transform = MatrixMultiply(MatrixRotateY(DEG2RAD * active_dir * -90), preview.transform);
+                    preview.materials[0].maps[MAP_DIFFUSE].color.a = 150;
+                    DrawModel(preview, (Vector3){x_offset, 0.0f, z_offset}, 2.0f / 3, WHITE);
                     DrawCube((Vector3){x_offset, -BLOCK_SIZE / 2, z_offset}, BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE, GREEN);
                 }
                 else
