@@ -43,8 +43,9 @@ int main(void)
     camera = default_camera;
     GridLocation grid_loc;
     Direction old_active_dir;
-    Rectangle level_icon_box = {180, 180, 150, 150};
-    Vector2 icon_box_start = {180, 180};
+    Rectangle level_icon_box = {360, 180, 150, 150};
+    Vector2 icon_box_start = {360, 180};
+    int text_size = MeasureText("LEVEL SELECT", 80);
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
@@ -57,6 +58,7 @@ int main(void)
 
         if (game_state == main_menu)
         {
+            DrawText("LEVEL SELECT", SCREEN_WIDTH / 2 - text_size / 2, 20, 80, GREEN);
             level_icon_box.x = icon_box_start.x;
             level_icon_box.y = icon_box_start.y;
             for (int i = 0; i < level_count; i++)
@@ -226,7 +228,7 @@ int main(void)
                 DrawRectangleRec(level_icon_box, GRAY);
                 DrawTextRec(GetFontDefault(), TextFormat(" %i", i + 1), level_icon_box, 140, 0, false, GREEN);
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
-                if (level_icon_box.x >= SCREEN_WIDTH - 4 * level_icon_box.width)
+                if (level_icon_box.x >= SCREEN_WIDTH - 3 * level_icon_box.width)
                 {
                     level_icon_box.x = icon_box_start.x;
                     level_icon_box.y += level_icon_box.height + BOX_SPACING;
