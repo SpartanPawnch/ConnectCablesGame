@@ -15,7 +15,7 @@ typedef enum GameState
 #define BOX_SPACING 20
 #define OFFSET_LIMIT 5
 GameState game_state = main_menu;
-const int level_count = 2;
+const int level_count = 9;
 // Change this depending on the path of your executable relative to the assets folder
 #define ASSET_PATH "assets/"
 int grid_start_x = 0, grid_start_y = 0;
@@ -51,6 +51,9 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+        if (IsKeyPressed(KEY_F11))
+            ToggleFullscreen();
+
         if (game_state == main_menu)
         {
             level_icon_box.x = icon_box_start.x;
@@ -65,6 +68,11 @@ int main(void)
                     game_state = level;
                 }
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
+                if (level_icon_box.x >= SCREEN_WIDTH - level_icon_box.width)
+                {
+                    level_icon_box.x = icon_box_start.x;
+                    level_icon_box.y += level_icon_box.height + BOX_SPACING;
+                }
             }
         }
         else if (game_state == level)
@@ -185,6 +193,7 @@ int main(void)
         BeginMode3D(camera);
 
         draw_field(camera);
+        //DrawModel(get_model_id(cable_turn), (Vector3){0, 1, 0}, 2.0f / 3, WHITE);
 
         EndMode3D();
 
@@ -199,6 +208,11 @@ int main(void)
                 DrawRectangleRec(level_icon_box, GRAY);
                 DrawTextRec(GetFontDefault(), TextFormat(" %i", i), level_icon_box, 140, 0, false, GREEN);
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
+                if (level_icon_box.x >= SCREEN_WIDTH - level_icon_box.width)
+                {
+                    level_icon_box.x = icon_box_start.x;
+                    level_icon_box.y += level_icon_box.height + BOX_SPACING;
+                }
             }
         }
         else

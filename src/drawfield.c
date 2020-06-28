@@ -21,6 +21,16 @@ void draw_field(Camera3D camera)
     float z_offset = BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
     Color draw_color = WHITE;
     GridLocation location = get_cursor_indices(camera);
+
+    //draw obstacles-------------------------------------------
+    Model obstacle;
+    for (int i = 0; i < get_obstacle_count(); i++)
+    {
+        obstacle = get_obstacle_id(obstacle_list[i].id);
+        obstacle.transform = MatrixMultiply(MatrixRotateY(DEG2RAD * obstacle_list[i].dir * -90), obstacle.transform);
+        DrawModel(obstacle, (Vector3){BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].x * BLOCK_SIZE, 0.0f, BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].y * BLOCK_SIZE}, 1.0f, WHITE);
+    }
+
     for (int i = 0; i < GRID_LENGTH; i++)
     {
         x_offset = 0.0f + BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
@@ -40,7 +50,7 @@ void draw_field(Camera3D camera)
                 else
 #endif
                     draw_color = WHITE;
-                DrawModel(get_grid_model(j, i), (Vector3){x_offset, 0.0f, z_offset}, .666666f, draw_color);
+                DrawModel(get_grid_model(j, i), (Vector3){x_offset, 0.0f, z_offset}, 2.0f / 3, draw_color);
             }
             //draw grid---------------------
             if (j == location.u && i == location.v)
@@ -62,13 +72,5 @@ void draw_field(Camera3D camera)
             x_offset -= BLOCK_SIZE;
         }
         z_offset -= BLOCK_SIZE;
-    }
-    //draw obstacles-------------------------------------------
-    Model obstacle;
-    for (int i = 0; i < get_obstacle_count(); i++)
-    {
-        obstacle = get_obstacle_id(obstacle_list[i].id);
-        obstacle.transform = MatrixMultiply(MatrixRotateY(DEG2RAD * obstacle_list[i].dir * -90), obstacle.transform);
-        DrawModel(obstacle, (Vector3){BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].x * BLOCK_SIZE, 0.0f, BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].y * BLOCK_SIZE}, 1.0f, WHITE);
     }
 }
