@@ -55,13 +55,52 @@ void load_level(int lv)
         add_obstacle(sofa, 3, 4, left);
         add_laptop(5, 5, right);
         break;
- case 0:
+ case 9:
+        //level info
+        grid_start_x = 0;
+        grid_start_y = 0;
+        //add obstacles
+        add_obstacle(sofa, 7, 3, right);
+        add_obstacle(wall, 2, 0, right);
+        add_obstacle(wall, 2, 2, right);
+        add_obstacle(wall, 2, 3, right);
+        add_obstacle(wall, 0, 5, right);
+        add_obstacle(wall, 1, 5, right);
+        add_obstacle(wall, 3, 6, up);
+        add_obstacle(wall, 4, 6, up);
+        add_obstacle(sofa, 3, 4, down);
+        add_obstacle(speaker, 7, 5, right);
+        add_obstacle(speaker, 5, 4, right);
+        add_laptop(8, 5, down);
+        break;
+ case 10:
         //level info
         grid_start_x = 0;
         grid_start_y = 0;
         //add obstacles
         add_obstacle(speaker, 4, 5, right);
         add_laptop(5, 5, right);
+        break;
+ case 0:
+        //level info
+        grid_start_x = 0;
+        grid_start_y = 6;
+        //add obstacles
+        add_obstacle(wall, 0, 5, up);
+        add_obstacle(wall, 1, 5, up);
+        add_obstacle(wall, 2, 5, up);
+        add_obstacle(wall, 3, 5, up);
+        add_obstacle(wall, 4, 5, up);
+        add_obstacle(wall, 5, 5, up);
+        add_obstacle(wardrobe, 6, 4, up);
+        add_obstacle(speaker, 7, 2, right);
+        add_obstacle(wardrobe, 5, 1, right);
+        add_obstacle(wall, 0, 2, up);
+        add_obstacle(wall, 1, 2, up);
+        add_obstacle(wall, 2, 2, up);
+        add_obstacle(wall, 3, 2, up);
+        add_obstacle(sofa, 5, 7, up);
+        add_laptop(0, 1, down);
         break;
  case 8:
         //level info
