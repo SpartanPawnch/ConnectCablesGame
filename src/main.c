@@ -12,10 +12,12 @@ typedef enum GameState
     level = 1,
     end_screen = 2
 } GameState;
+ModelId model_id = cable_straight;
+Direction active_dir = right;
 #define BOX_SPACING 20
 #define OFFSET_LIMIT 5
 GameState game_state = main_menu;
-const int level_count = 2;
+const int level_count = 10;
 // Change this depending on the path of your executable relative to the assets folder
 #define ASSET_PATH "assets/"
 int grid_start_x = 0, grid_start_y = 0;
@@ -23,7 +25,7 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Ethernet Salvation");
     load_models();
 
     //------- Level Setup
@@ -40,10 +42,10 @@ int main(void)
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     camera = default_camera;
     GridLocation grid_loc;
-    Direction active_dir = right;
-    ModelId model_id = cable_straight;
-    Rectangle level_icon_box = {90, 90, 150, 150};
-    Vector2 icon_box_start = {90, 90};
+    Direction old_active_dir;
+    Rectangle level_icon_box = {360, 180, 150, 150};
+    Vector2 icon_box_start = {360, 180};
+    int text_size = MeasureText("LEVEL SELECT", 80);
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
@@ -51,24 +53,48 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+        if (IsKeyPressed(KEY_F11))
+            ToggleFullscreen();
+
         if (game_state == main_menu)
         {
+            DrawText("LEVEL SELECT", SCREEN_WIDTH / 2 - text_size / 2, 20, 80, GREEN);
             level_icon_box.x = icon_box_start.x;
             level_icon_box.y = icon_box_start.y;
             for (int i = 0; i < level_count; i++)
             {
-                if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), level_icon_box))
+                if (CheckCollisionPointRec(GetMousePosition(), level_icon_box))
                 {
                     empty_grid();
                     load_level(i);
                     place_obstacles_grid();
-                    game_state = level;
+                    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+                    {
+                        game_state = level;
+                        camera_offset = (Vector2){0.0f, 0.0f};
+                        camera_rot = default_camera_rot;
+                    }
+                    break;
                 }
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
+                if (level_icon_box.x >= SCREEN_WIDTH - 4 * level_icon_box.width)
+                {
+                    level_icon_box.x = icon_box_start.x;
+                    level_icon_box.y += level_icon_box.height + BOX_SPACING;
+                }
+            }
+            camera_rot += .5f;
+            while (camera_rot >= 360)
+            {
+                camera_rot -= 360;
             }
         }
         else if (game_state == level)
         {
+            if (win_condition())
+            {
+                game_state = main_menu;
+            }
             if (IsKeyPressed('1'))
             {
                 model_id = cable_straight;
@@ -142,6 +168,8 @@ int main(void)
                 camera_rot -= ROTATE_VELOCITY;
             }
             grid_loc = get_cursor_indices(camera);
+
+            //mouse place
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && get_grid_id(grid_loc.u, grid_loc.v) == -1)
             {
                 place_obj(model_id, grid_loc.u, grid_loc.v, active_dir);
@@ -185,6 +213,7 @@ int main(void)
         BeginMode3D(camera);
 
         draw_field(camera);
+        //DrawModel(get_model_id(cable_turn), (Vector3){0, 1, 0}, 2.0f / 3, WHITE);
 
         EndMode3D();
 
@@ -197,13 +226,18 @@ int main(void)
             for (int i = 0; i < level_count; i++)
             {
                 DrawRectangleRec(level_icon_box, GRAY);
-                DrawTextRec(GetFontDefault(), TextFormat(" %i", i), level_icon_box, 140, 0, false, GREEN);
+                DrawTextRec(GetFontDefault(), TextFormat(" %i", i + 1), level_icon_box, 140, 0, false, GREEN);
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
+                if (level_icon_box.x >= SCREEN_WIDTH - 3 * level_icon_box.width)
+                {
+                    level_icon_box.x = icon_box_start.x;
+                    level_icon_box.y += level_icon_box.height + BOX_SPACING;
+                }
             }
         }
         else
         {
-            DrawText(TextFormat("Selection: %i, %f, %f", model_id, camera_offset.x, camera_offset.y), 0, SCREEN_HEIGHT - 20, 20, GREEN);
+            DrawText(TextFormat("Laptops Connected: %i/%i", laptops_connected, laptop_count), 0, SCREEN_HEIGHT - 60, 60, GREEN);
             switch (active_dir)
             {
             case right:

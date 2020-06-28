@@ -2,6 +2,9 @@
 #define LEVEL_LOAD_GUARD
 #include "level_state.h"
 #include "models.h"
+extern int laptop_count;
+extern int laptops_connected;
+bool win_condition();
 void load_level(int lv);
 int get_obstacle_count();
 typedef struct ObstacleStandalone

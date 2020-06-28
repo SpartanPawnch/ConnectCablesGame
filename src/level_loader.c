@@ -6,6 +6,7 @@ ObstacleStandalone obstacle_list[MAX_OBSTACLES_ACTIVE];
 GridLocation laptops[MAX_LAPTOPS];
 int laptop_count = 0;
 int obstacle_count = 0;
+int laptops_connected = 0;
 int get_obstacle_count()
 {
     return obstacle_count;
@@ -46,6 +47,7 @@ int switches=0;
 void load_level(int lv)
 {
     obstacle_count = 0;
+    laptop_count = 0;
     switch (lv)
     {
  case 0:
@@ -58,7 +60,11 @@ void load_level(int lv)
         add_obstacle(speaker, 4, 5, right);
         add_laptop(5, 5, right);
         break;
+<<<<<<< HEAD
  case 1:
+=======
+    case 0:
+>>>>>>> 9cff43b73a254e2d0846fddb648c4f318f838074
         //level info
         budget=13;
         switches=0;
@@ -69,7 +75,34 @@ void load_level(int lv)
         add_obstacle(sofa, 3, 4, left);
         add_laptop(5, 5, right);
         break;
+<<<<<<< HEAD
  case 2:
+=======
+    case 8:
+        //level info
+        grid_start_x = 0;
+        grid_start_y = 7;
+        //add obstacles
+        add_obstacle(speaker, 3, 6, right);
+        add_obstacle(speaker, 3, 4, right);
+        add_obstacle(speaker, 5, 3, right);
+        add_obstacle(wall, 9, 4, up);
+        add_obstacle(wall, 8, 4, up);
+        add_obstacle(wall, 7, 4, up);
+        add_obstacle(wall, 5, 5, right);
+        add_obstacle(wall, 5, 6, right);
+        add_obstacle(wall, 7, 7, right);
+        add_obstacle(wall, 7, 6, left);
+        add_obstacle(sofa, 3, 8, left);
+        add_obstacle(sofa, 8, 9, down);
+        add_obstacle(wardrobe, 5, 9, left);
+        add_obstacle(sofa, 3, 3, left);
+        add_obstacle(wall, 6, 6, up);
+        add_laptop(9, 7, up);
+        add_laptop(6, 9, right);
+        break;
+    case 2:
+>>>>>>> 9cff43b73a254e2d0846fddb648c4f318f838074
         //level info
         budget=26;
         switches=0;
@@ -91,7 +124,7 @@ void load_level(int lv)
         add_obstacle(speaker, 8, 5, left);
         add_laptop(9, 3, right);
         break;
- case 3:
+    case 3:
         //level info
         budget=29;
         switches=0;
@@ -116,15 +149,21 @@ void load_level(int lv)
         add_obstacle(speaker, 8, 4, left);
         add_laptop(9, 2, right);
         break;
- case 4:
+    case 4:
         //level info
         budget=18;
         switches=1;
         grid_start_x = 7;
         grid_start_y = 0;
         //add obstacles
-        for(int i=0;i<6;i++){add_obstacle(wall, 8, 0+i,right);}
-        for(int i=0;i<5;i++){add_obstacle(wall, 2, 0+i,right);}
+        for (int i = 0; i < 6; i++)
+        {
+            add_obstacle(wall, 8, 0 + i, right);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            add_obstacle(wall, 2, 0 + i, right);
+        }
         add_obstacle(wall, 9, 7, up);
         add_obstacle(wall, 8, 7, up);
         add_obstacle(wall, 7, 7, up);
@@ -141,7 +180,7 @@ void load_level(int lv)
         add_laptop(9, 8, up);
         add_laptop(3, 8, up);
         break;
- case 5:
+    case 5:
         //level info
         budget=31;
         switches=1;
@@ -176,7 +215,7 @@ void load_level(int lv)
         add_laptop(4, 9, right);
         add_laptop(0, 8, down);
         break;
- case 6:
+    case 6:
         //level info
         budget=36;
         switches=1;
@@ -208,7 +247,7 @@ void load_level(int lv)
         add_laptop(7, 0, right);
         add_laptop(5, 0, right);
         break;
- case 7:
+    case 7:
         //level info
         budget=27;
         switches=2;
@@ -307,3 +346,20 @@ void load_level(int lv)
     }
     place_obj(net_switch, grid_start_x, grid_start_y, right);
 }
+<<<<<<< HEAD
+=======
+bool win_condition()
+{
+    laptops_connected = 0;
+    for (int i = 0; i < laptop_count; i++)
+    {
+        if (get_grid_active(laptops[i].u, laptops[i].v))
+        {
+            laptops_connected++;
+        }
+    }
+    if (laptops_connected == laptop_count)
+        return true;
+    return false;
+}
+>>>>>>> 9cff43b73a254e2d0846fddb648c4f318f838074

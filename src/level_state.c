@@ -48,6 +48,48 @@ void place_obstacles_grid()
         }
     }
 }
+/*
+#define VALIDATE_RELATIVE(dir) (x - (dir % 2) * (1 - 2 * (dir / 2)) > 0 && x - (dir % 2) * (1 - 2 * (dir / 2)) < GRID_LENGTH && y - (1 - dir % 2) * (1 - 2 * (dir / 2)) > 0 && y - (1 - dir % 2) * (1 - 2 * (dir / 2)) < GRID_LENGTH)
+#define TURNORSTRAIGHT(dirr) ((object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].dir == dirr && object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].type == cable_straight) || object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].type == net_switch || (object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].type == cable_turn && (object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].dir + 1) % 4 == dirr || (object_grid[y - (1 - dirr % 2) * (1 - 2 * (dirr / 2))][x - (dirr % 2) * (1 - 2 * (dirr / 2))].dir + 2) % 4 == dirr))
+
+ModelIdDir cable_select(int x, int y, Direction dir)
+{
+    ModelIdDir moddir = {0};
+    if (VALIDATE_RELATIVE(dir) && TURNORSTRAIGHT(dir))
+    {
+        printf("straight\n");
+        moddir.model_id = cable_straight;
+        moddir.dir = dir;
+        return moddir;
+    }
+    //clockwise
+    if (VALIDATE_RELATIVE((dir + 1) % 4) && TURNORSTRAIGHT((dir + 1) % 4))
+    {
+        moddir.model_id = cable_turn;
+        moddir.dir = dir;
+        return moddir;
+    }
+    //anticlockwise
+    if (VALIDATE_RELATIVE((dir + 3) % 4) && TURNORSTRAIGHT((dir + 3) % 4))
+    {
+        printf("cclock\n");
+        moddir.model_id = cable_turn;
+        moddir.dir = (dir + 3) % 4;
+        return moddir;
+    }
+    //backwards
+    if (VALIDATE_RELATIVE((dir + 2) % 4) && TURNORSTRAIGHT((dir + 2) % 4))
+    {
+        printf("back\n");
+        moddir.model_id = cable_straight;
+        moddir.dir = (dir + 2) % 4;
+        return moddir;
+    }
+    moddir.model_id = cable_straight;
+    moddir.dir = dir;
+    return moddir;
+}
+*/
 int get_grid_id(int x, int y)
 {
     return object_grid[y][x].type;
