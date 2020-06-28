@@ -27,7 +27,7 @@ void draw_field(Camera3D camera)
     float z_offset = BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
     Color draw_color = WHITE;
     GridLocation location = get_cursor_indices(camera);
-
+    float y_offset_interact = 0.0f;
     //draw obstacles-------------------------------------------
     Model obstacle;
     for (int i = 0; i < get_obstacle_count(); i++)
@@ -54,7 +54,16 @@ void draw_field(Camera3D camera)
                 else
 #endif
                     draw_color = WHITE;
-                DrawModel(get_grid_model(j, i), (Vector3){x_offset, 0.0f, z_offset}, 2.0f / 3, draw_color);
+                //cable turn hack
+                if (get_grid_id(j, i) == cable_turn)
+                {
+                    y_offset_interact = 1.0f / 3;
+                }
+                else
+                {
+                    y_offset_interact = 0.0f;
+                }
+                DrawModel(get_grid_model(j, i), (Vector3){x_offset, y_offset_interact, z_offset}, 2.0f / 3, draw_color);
             }
             //draw grid---------------------
             if (j == location.u && i == location.v && game_state == level)
