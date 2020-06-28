@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "drawfield.h"
 #include "models.h"
+#include "level_loader.h"
 #include "level_state.h"
 #define SCREEN_WIDTH (1600)
 #define SCREEN_HEIGHT (900)
@@ -14,14 +15,19 @@ int main(void)
     //--------------------------------------------------------------------------------------
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
     load_models();
+
+    //------- Level Setup
     empty_grid();
-    Texture2D texture = LoadTexture(ASSET_PATH "test.png");
+    load_level(0);
+    place_obstacles_grid();
+
     Camera3D camera = (Camera3D){
         (Vector3){11.0f, 10.0f, -6.0f}, (Vector3){1.0f, 0.0f, -1.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 45.0f, CAMERA_PERSPECTIVE};
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     GridLocation grid_loc;
     Direction active_dir = right;
     ModelId model_id = cable_straight;
+
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
@@ -39,7 +45,7 @@ int main(void)
         }
         else if (IsKeyPressed('3'))
         {
-            model_id = laptop;
+            model_id = cable_turn;
         }
         if (IsKeyPressed(KEY_R))
         {

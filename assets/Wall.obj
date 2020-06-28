@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Wall.blend'
 # www.blender.org
-mtllib Wall.mtl
+mtllib assets/Wall.mtl
 o Cube_Cube.002
 v -0.250000 0.007271 0.500000
 v -0.250000 2.007271 0.500000

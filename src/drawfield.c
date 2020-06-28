@@ -1,7 +1,9 @@
 #include "drawfield.h"
 #include "raylib.h"
 #include <math.h>
+#include "raymath.h"
 #include "models.h"
+#include "level_loader.h"
 #include "level_state.h"
 
 GridLocation get_cursor_indices(Camera3D camera)
@@ -24,9 +26,9 @@ void draw_field(Camera3D camera)
         x_offset = 0.0f + BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
         for (int j = 0; j < GRID_LENGTH; j++)
         {
-            if (get_grid_id(j, i) != -1)
+            if (get_grid_id(j, i) > -1)
             {
-//draw interactives
+//draw interactives---------------------------------
 #define DEBUG_DRAW
 #ifdef DEBUG_DRAW
                 if (get_grid_active(j, i))
@@ -41,7 +43,7 @@ void draw_field(Camera3D camera)
                     draw_color = WHITE;
                 DrawModel(get_grid_model(j, i), (Vector3){x_offset, 0.0f, z_offset}, .666666f, draw_color);
             }
-            //draw grid
+            //draw grid---------------------
             if (j == location.u && i == location.v)
             {
                 if (get_grid_id(j, i) == -1)
@@ -61,5 +63,13 @@ void draw_field(Camera3D camera)
             x_offset -= BLOCK_SIZE;
         }
         z_offset -= BLOCK_SIZE;
+    }
+    //draw obstacles-------------------------------------------
+    Model obstacle;
+    for (int i = 0; i < get_obstacle_count(); i++)
+    {
+        obstacle = get_obstacle_id(obstacle_list[i].id);
+        obstacle.transform = MatrixMultiply(MatrixRotateY(DEG2RAD * obstacle_list[i].dir * -90), obstacle.transform);
+        DrawModel(obstacle, (Vector3){BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].x * BLOCK_SIZE, 0.0f, BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2 - obstacle_list[i].y * BLOCK_SIZE}, 1.0f, WHITE);
     }
 }
