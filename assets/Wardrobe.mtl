@@ -10,6 +10,7 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd D:\\Connect_Cables\\Models\\Wardrobe_texture.png
 
 newmtl Material.002
 Ns 0.000000
@@ -20,3 +21,4 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd D:\\Connect_Cables\\Models\\Wardrobe_texture.png
