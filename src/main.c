@@ -23,7 +23,7 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ConnectCablesGame");
     load_models();
 
     //------- Level Setup
@@ -42,8 +42,8 @@ int main(void)
     GridLocation grid_loc;
     Direction active_dir = right;
     ModelId model_id = cable_straight;
-    Rectangle level_icon_box = {90, 90, 150, 150};
-    Vector2 icon_box_start = {90, 90};
+    Rectangle level_icon_box = {180, 180, 150, 150};
+    Vector2 icon_box_start = {180, 180};
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
@@ -60,19 +60,30 @@ int main(void)
             level_icon_box.y = icon_box_start.y;
             for (int i = 0; i < level_count; i++)
             {
-                if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), level_icon_box))
+                if (CheckCollisionPointRec(GetMousePosition(), level_icon_box))
                 {
                     empty_grid();
                     load_level(i);
                     place_obstacles_grid();
-                    game_state = level;
+                    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+                    {
+                        game_state = level;
+                        camera_offset = (Vector2){0.0f, 0.0f};
+                        camera_rot = default_camera_rot;
+                    }
+                    break;
                 }
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
-                if (level_icon_box.x >= SCREEN_WIDTH - level_icon_box.width)
+                if (level_icon_box.x >= SCREEN_WIDTH - 4 * level_icon_box.width)
                 {
                     level_icon_box.x = icon_box_start.x;
                     level_icon_box.y += level_icon_box.height + BOX_SPACING;
                 }
+            }
+            camera_rot += .5f;
+            while (camera_rot >= 360)
+            {
+                camera_rot -= 360;
             }
         }
         else if (game_state == level)
@@ -206,9 +217,9 @@ int main(void)
             for (int i = 0; i < level_count; i++)
             {
                 DrawRectangleRec(level_icon_box, GRAY);
-                DrawTextRec(GetFontDefault(), TextFormat(" %i", i), level_icon_box, 140, 0, false, GREEN);
+                DrawTextRec(GetFontDefault(), TextFormat(" %i", i + 1), level_icon_box, 140, 0, false, GREEN);
                 level_icon_box.x += level_icon_box.width + BOX_SPACING;
-                if (level_icon_box.x >= SCREEN_WIDTH - level_icon_box.width)
+                if (level_icon_box.x >= SCREEN_WIDTH - 4 * level_icon_box.width)
                 {
                     level_icon_box.x = icon_box_start.x;
                     level_icon_box.y += level_icon_box.height + BOX_SPACING;

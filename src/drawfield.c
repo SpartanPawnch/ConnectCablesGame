@@ -5,7 +5,13 @@
 #include "models.h"
 #include "level_loader.h"
 #include "level_state.h"
-
+typedef enum GameState
+{
+    main_menu = 0,
+    level = 1,
+    end_screen = 2
+} GameState;
+extern GameState game_state;
 GridLocation get_cursor_indices(Camera3D camera)
 {
     Ray ray = GetMouseRay(GetMousePosition(), camera);
@@ -36,16 +42,14 @@ void draw_field(Camera3D camera)
         x_offset = 0.0f + BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
         for (int j = 0; j < GRID_LENGTH; j++)
         {
-            if (get_grid_id(j, i) - 1)
+            if (get_grid_id(j, i) > -1)
             {
 //draw interactives---------------------------------
 #ifdef DEBUG_DRAW
                 if (get_grid_active(j, i))
                 {
-                    if (get_grid_id(j, i) == cable_straight)
-                        draw_color = RED;
-                    else if (get_grid_id(j, i) == laptop)
-                        DrawCube((Vector3){x_offset, 0.0f, z_offset}, 1.0f, 1.0f, 1.0f, GREEN);
+                    if (get_grid_id(j, i) == laptop)
+                        draw_color = GREEN;
                 }
                 else
 #endif
@@ -53,7 +57,7 @@ void draw_field(Camera3D camera)
                 DrawModel(get_grid_model(j, i), (Vector3){x_offset, 0.0f, z_offset}, 2.0f / 3, draw_color);
             }
             //draw grid---------------------
-            if (j == location.u && i == location.v)
+            if (j == location.u && i == location.v && game_state == level)
             {
                 if (get_grid_id(j, i) == -1)
                 {

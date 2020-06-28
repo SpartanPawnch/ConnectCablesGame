@@ -44,6 +44,7 @@ void add_laptop(int x, int y, Direction dir)
 void load_level(int lv)
 {
     obstacle_count = 0;
+    laptop_count = 0;
     switch (lv)
     {
     case 1:
@@ -55,7 +56,7 @@ void load_level(int lv)
         add_obstacle(sofa, 3, 4, left);
         add_laptop(5, 5, right);
         break;
- case 0:
+    case 0:
         //level info
         grid_start_x = 0;
         grid_start_y = 0;
@@ -63,7 +64,7 @@ void load_level(int lv)
         add_obstacle(speaker, 4, 5, right);
         add_laptop(5, 5, right);
         break;
- case 8:
+    case 8:
         //level info
         grid_start_x = 0;
         grid_start_y = 7;
@@ -86,7 +87,7 @@ void load_level(int lv)
         add_laptop(9, 7, up);
         add_laptop(6, 9, right);
         break;
- case 2:
+    case 2:
         //level info
         grid_start_x = 4;
         grid_start_y = 0;
@@ -106,7 +107,7 @@ void load_level(int lv)
         add_obstacle(speaker, 8, 5, left);
         add_laptop(9, 3, right);
         break;
- case 3:
+    case 3:
         //level info
         grid_start_x = 0;
         grid_start_y = 9;
@@ -129,13 +130,19 @@ void load_level(int lv)
         add_obstacle(speaker, 8, 4, left);
         add_laptop(9, 2, right);
         break;
- case 4:
+    case 4:
         //level info
         grid_start_x = 7;
         grid_start_y = 0;
         //add obstacles
-        for(int i=0;i<6;i++){add_obstacle(wall, 8, 0+i,right);}
-        for(int i=0;i<5;i++){add_obstacle(wall, 2, 0+i,right);}
+        for (int i = 0; i < 6; i++)
+        {
+            add_obstacle(wall, 8, 0 + i, right);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            add_obstacle(wall, 2, 0 + i, right);
+        }
         add_obstacle(wall, 9, 7, up);
         add_obstacle(wall, 8, 7, up);
         add_obstacle(wall, 7, 7, up);
@@ -152,7 +159,7 @@ void load_level(int lv)
         add_laptop(9, 8, up);
         add_laptop(3, 8, up);
         break;
- case 5:
+    case 5:
         //level info
         grid_start_x = 9;
         grid_start_y = 0;
@@ -185,7 +192,7 @@ void load_level(int lv)
         add_laptop(4, 9, right);
         add_laptop(0, 8, down);
         break;
- case 6:
+    case 6:
         //level info
         grid_start_x = 9;
         grid_start_y = 8;
@@ -215,7 +222,7 @@ void load_level(int lv)
         add_laptop(7, 0, right);
         add_laptop(5, 0, right);
         break;
- case 7:
+    case 7:
         //level info
         grid_start_x = 0;
         grid_start_y = 6;
