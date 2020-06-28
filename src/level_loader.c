@@ -41,13 +41,27 @@ void add_laptop(int x, int y, Direction dir)
         place_obj(laptop, x, y, dir);
     }
 }
+int budget=0;
+int switches=0;
 void load_level(int lv)
 {
     obstacle_count = 0;
     switch (lv)
     {
-    case 1:
+ case 0:
         //level info
+        budget=9;
+        switches=0;
+        grid_start_x = 0;
+        grid_start_y = 0;
+        //add obstacles
+        add_obstacle(speaker, 4, 5, right);
+        add_laptop(5, 5, right);
+        break;
+ case 1:
+        //level info
+        budget=13;
+        switches=0;
         grid_start_x = 0;
         grid_start_y = 0;
         //add obstacles
@@ -55,78 +69,10 @@ void load_level(int lv)
         add_obstacle(sofa, 3, 4, left);
         add_laptop(5, 5, right);
         break;
- case 9:
-        //level info
-        grid_start_x = 0;
-        grid_start_y = 0;
-        //add obstacles
-        add_obstacle(sofa, 7, 3, right);
-        add_obstacle(wall, 2, 0, right);
-        add_obstacle(wall, 2, 2, right);
-        add_obstacle(wall, 2, 3, right);
-        add_obstacle(wall, 0, 5, right);
-        add_obstacle(wall, 1, 5, right);
-        add_obstacle(wall, 3, 6, up);
-        add_obstacle(wall, 4, 6, up);
-        add_obstacle(sofa, 3, 4, down);
-        add_obstacle(speaker, 7, 5, right);
-        add_obstacle(speaker, 5, 4, right);
-        add_laptop(8, 5, down);
-        break;
- case 10:
-        //level info
-        grid_start_x = 0;
-        grid_start_y = 0;
-        //add obstacles
-        add_obstacle(speaker, 4, 5, right);
-        add_laptop(5, 5, right);
-        break;
- case 0:
-        //level info
-        grid_start_x = 0;
-        grid_start_y = 6;
-        //add obstacles
-        add_obstacle(wall, 0, 5, up);
-        add_obstacle(wall, 1, 5, up);
-        add_obstacle(wall, 2, 5, up);
-        add_obstacle(wall, 3, 5, up);
-        add_obstacle(wall, 4, 5, up);
-        add_obstacle(wall, 5, 5, up);
-        add_obstacle(wardrobe, 6, 4, up);
-        add_obstacle(speaker, 7, 2, right);
-        add_obstacle(wardrobe, 5, 1, right);
-        add_obstacle(wall, 0, 2, up);
-        add_obstacle(wall, 1, 2, up);
-        add_obstacle(wall, 2, 2, up);
-        add_obstacle(wall, 3, 2, up);
-        add_obstacle(sofa, 5, 7, up);
-        add_laptop(0, 1, down);
-        break;
- case 8:
-        //level info
-        grid_start_x = 0;
-        grid_start_y = 7;
-        //add obstacles
-        add_obstacle(speaker, 3, 6, right);
-        add_obstacle(speaker, 3, 4, right);
-        add_obstacle(speaker, 5, 3, right);
-        add_obstacle(wall, 9, 4, up);
-        add_obstacle(wall, 8, 4, up);
-        add_obstacle(wall, 7, 4, up);
-        add_obstacle(wall, 5, 5, right);
-        add_obstacle(wall, 5, 6, right);
-        add_obstacle(wall, 7, 7, right);
-        add_obstacle(wall, 7, 6, left);
-        add_obstacle(sofa, 3, 8, left);
-        add_obstacle(sofa, 8, 9, down);
-        add_obstacle(wardrobe, 5, 9, left);
-        add_obstacle(sofa, 3, 3, left);
-        add_obstacle(wall, 6, 6, up);
-        add_laptop(9, 7, up);
-        add_laptop(6, 9, right);
-        break;
  case 2:
         //level info
+        budget=26;
+        switches=0;
         grid_start_x = 4;
         grid_start_y = 0;
         //add obstacles
@@ -147,6 +93,8 @@ void load_level(int lv)
         break;
  case 3:
         //level info
+        budget=29;
+        switches=0;
         grid_start_x = 0;
         grid_start_y = 9;
         //add obstacles
@@ -170,6 +118,8 @@ void load_level(int lv)
         break;
  case 4:
         //level info
+        budget=18;
+        switches=1;
         grid_start_x = 7;
         grid_start_y = 0;
         //add obstacles
@@ -193,6 +143,8 @@ void load_level(int lv)
         break;
  case 5:
         //level info
+        budget=31;
+        switches=1;
         grid_start_x = 9;
         grid_start_y = 0;
         //add obstacles
@@ -226,6 +178,8 @@ void load_level(int lv)
         break;
  case 6:
         //level info
+        budget=36;
+        switches=1;
         grid_start_x = 9;
         grid_start_y = 8;
         //add obstacles
@@ -256,6 +210,8 @@ void load_level(int lv)
         break;
  case 7:
         //level info
+        budget=27;
+        switches=2;
         grid_start_x = 0;
         grid_start_y = 6;
         //add obstacles
@@ -273,6 +229,75 @@ void load_level(int lv)
         add_laptop(8, 9, right);
         add_laptop(9, 3, up);
         add_laptop(4, 0, left);
+        break;
+ case 8:
+        //level info
+        budget=30;
+        switches=2;
+        grid_start_x = 0;
+        grid_start_y = 7;
+        //add obstacles
+        add_obstacle(speaker, 3, 6, right);
+        add_obstacle(speaker, 3, 4, right);
+        add_obstacle(speaker, 5, 3, right);
+        add_obstacle(wall, 9, 4, up);
+        add_obstacle(wall, 8, 4, up);
+        add_obstacle(wall, 7, 4, up);
+        add_obstacle(wall, 5, 5, right);
+        add_obstacle(wall, 5, 6, right);
+        add_obstacle(wall, 7, 7, right);
+        add_obstacle(wall, 7, 6, left);
+        add_obstacle(sofa, 3, 8, left);
+        add_obstacle(sofa, 8, 9, down);
+        add_obstacle(wardrobe, 5, 9, left);
+        add_obstacle(sofa, 3, 3, left);
+        add_obstacle(wall, 6, 6, up);
+        add_laptop(9, 7, up);
+        add_laptop(6, 9, right);
+        break;
+ case 9:
+        //level info
+        budget=14;
+        switches=0;
+        grid_start_x = 0;
+        grid_start_y = 0;
+        //add obstacles
+        add_obstacle(sofa, 7, 3, right);
+        add_obstacle(wall, 2, 0, right);
+        add_obstacle(wall, 2, 2, right);
+        add_obstacle(wall, 2, 3, right);
+        add_obstacle(wall, 0, 5, right);
+        add_obstacle(wall, 1, 5, right);
+        add_obstacle(wall, 3, 6, up);
+        add_obstacle(wall, 4, 6, up);
+        add_obstacle(sofa, 3, 4, down);
+        add_obstacle(speaker, 7, 5, right);
+        add_obstacle(speaker, 5, 4, right);
+        add_laptop(8, 5, down);
+        break;
+
+ case 10:
+        //level info
+        budget=28;
+        switches=0;
+        grid_start_x = 0;
+        grid_start_y = 6;
+        //add obstacles
+        add_obstacle(wall, 0, 5, up);
+        add_obstacle(wall, 1, 5, up);
+        add_obstacle(wall, 2, 5, up);
+        add_obstacle(wall, 3, 5, up);
+        add_obstacle(wall, 4, 5, up);
+        add_obstacle(wall, 5, 5, up);
+        add_obstacle(wardrobe, 6, 4, up);
+        add_obstacle(speaker, 7, 2, right);
+        add_obstacle(wardrobe, 5, 1, right);
+        add_obstacle(wall, 0, 2, up);
+        add_obstacle(wall, 1, 2, up);
+        add_obstacle(wall, 2, 2, up);
+        add_obstacle(wall, 3, 2, up);
+        add_obstacle(sofa, 5, 7, up);
+        add_laptop(0, 1, down);
         break;
 
     default:
