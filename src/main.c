@@ -88,6 +88,10 @@ int main(void)
         }
         else if (game_state == level)
         {
+            if (win_condition())
+            {
+                game_state = main_menu;
+            }
             if (IsKeyPressed('1'))
             {
                 model_id = cable_straight;
@@ -228,7 +232,7 @@ int main(void)
         }
         else
         {
-            DrawText(TextFormat("Selection: %i, %f, %f", model_id, camera_offset.x, camera_offset.y), 0, SCREEN_HEIGHT - 20, 20, GREEN);
+            DrawText(TextFormat("Laptops Connected: %i/%i", laptops_connected, laptop_count), 0, SCREEN_HEIGHT - 60, 60, GREEN);
             switch (active_dir)
             {
             case right:

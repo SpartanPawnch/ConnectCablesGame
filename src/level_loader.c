@@ -6,6 +6,7 @@ ObstacleStandalone obstacle_list[MAX_OBSTACLES_ACTIVE];
 GridLocation laptops[MAX_LAPTOPS];
 int laptop_count = 0;
 int obstacle_count = 0;
+int laptops_connected = 0;
 int get_obstacle_count()
 {
     return obstacle_count;
@@ -249,4 +250,18 @@ void load_level(int lv)
         break;
     }
     place_obj(net_switch, grid_start_x, grid_start_y, right);
+}
+bool win_condition()
+{
+    laptops_connected = 0;
+    for (int i = 0; i < laptop_count; i++)
+    {
+        if (get_grid_active(laptops[i].u, laptops[i].v))
+        {
+            laptops_connected++;
+        }
+    }
+    if (laptops_connected == laptop_count)
+        return true;
+    return false;
 }

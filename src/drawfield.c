@@ -57,7 +57,7 @@ void draw_field(Camera3D camera)
                 //cable turn hack
                 if (get_grid_id(j, i) == cable_turn)
                 {
-                    y_offset_interact = 1.0f / 3;
+                    y_offset_interact = 0.0f;
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Cable_turn.blend'
 # www.blender.org
-mtllib Cable_turn.mtl
+mtllib assets/Cable_turn.mtl
 o Cylinder
 v -0.000000 0.514806 -0.001281
 v -0.000000 0.479866 0.750000

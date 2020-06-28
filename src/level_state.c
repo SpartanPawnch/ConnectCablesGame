@@ -48,6 +48,20 @@ void place_obstacles_grid()
         }
     }
 }
+/*
+#define TURNORSTRAIGHT ((object_grid[y + (dir % 2) * (1 - 2 * (dir / 2))][x + (dir % 2) * (1 - 2 * (dir / 2))].dir == dir && object_grid[y][x].type == cable_straight) || (object_grid[y][x].type == cable_turn && (object_grid[y + (dir % 2) * (1 - 2 * (dir / 2))][x + (dir % 2) * (1 - 2 * (dir / 2))].dir + 1) % 4 == dir || (object_grid[y + (dir % 2) * (1 - 2 * (dir / 2))][x + (dir % 2) * (1 - 2 * (dir / 2))].dir + 2) % 4 == dir))
+ModelIdDir cable_select(int x, int y, Direction dir)
+{
+    ModelIdDir moddir = {0};
+    if (x + (dir % 2) * (1 - 2 * (dir / 2)) > 0 && x + (dir % 2) * (1 - 2 * (dir / 2)) < GRID_LENGTH && y + (dir % 2) * (1 - 2 * (dir / 2)) > 0 && y + (dir % 2) * (1 - 2 * (dir / 2)) < GRID_LENGTH && TURNORSTRAIGHT)
+    {
+        moddir.model_id = cable_straight;
+        moddir.dir = dir;
+        return moddir;
+    }
+    //clockwise
+}
+*/
 int get_grid_id(int x, int y)
 {
     return object_grid[y][x].type;

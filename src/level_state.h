@@ -8,6 +8,12 @@ typedef enum Direction
     left = 2,
     down = 3
 } Direction;
+typedef struct
+{
+    ModelId model_id;
+    Direction dir;
+} ModelIdDir;
+ModelIdDir cable_select(int x, int y, Direction dir);
 int get_grid_id(int x, int y);
 void populate_grid_rand();
 void empty_grid();
