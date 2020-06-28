@@ -12,6 +12,7 @@ int get_grid_id(int x, int y);
 void populate_grid_rand();
 void empty_grid();
 void grid_solver(int x, int y);
+void deactivate_grid();
 bool get_grid_active(int x, int y);
 void place_obj(ModelId id, int x, int y, Direction dir);
 Model get_grid_model(int x, int y);

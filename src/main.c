@@ -53,6 +53,7 @@ int main(void)
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && get_grid_id(grid_loc.u, grid_loc.v) == -1)
         {
             place_obj(model_id, grid_loc.u, grid_loc.v, active_dir);
+            deactivate_grid();
             grid_solver(grid_start_x, grid_start_y);
         }
         // Draw
