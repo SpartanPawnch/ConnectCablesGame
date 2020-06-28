@@ -19,7 +19,7 @@ void draw_field(Camera3D camera)
 {
     float x_offset = BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
     float z_offset = BLOCK_SIZE * GRID_LENGTH / 2 - BLOCK_SIZE / 2;
-    Color draw_color;
+    Color draw_color = WHITE;
     GridLocation location = get_cursor_indices(camera);
     for (int i = 0; i < GRID_LENGTH; i++)
     {
