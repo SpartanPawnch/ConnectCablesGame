@@ -1,6 +1,6 @@
 # Blender v2.80 (sub 75) OBJ File: 'Wardrobe.blend'
 # www.blender.org
-mtllib Wardrobe.mtl
+mtllib assets/Wardrobe.mtl
 o Plane
 v -0.400319 0.000000 -1.497892
 v 0.399681 0.000000 -1.497892

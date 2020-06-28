@@ -51,7 +51,7 @@ void load_level(int lv)
         grid_start_x = 0;
         grid_start_y = 0;
         //add obstacles
-        add_obstacle(wall, 2, 0, right);
+        add_obstacle(wardrobe, 2, 0, right);
         add_laptop(5, 5, right);
         break;
 
